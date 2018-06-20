@@ -1,7 +1,8 @@
 <h1>Example App: Home</h1>
 
-{{#each news}}
-    <article style=" width:600px; float:left; box-shadow: -1px 4px 2px -2px grey;">
+<div class="grid-container">
+    {{#each news}}
+    <article style="  box-shadow: -1px 4px 2px -2px grey;">
           <h3 style="background:#dedede; border: 1px solid #bbb; padding:10px; margin:10px; " >
              <a href="{{link}}"> {{title}}</a> 
              <button>Save</button>
@@ -11,3 +12,4 @@
         </div>
     </article>
 {{/each}}
+</div>

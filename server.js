@@ -11,21 +11,18 @@ var app = express();
 //var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapedData";
 
 //mongoose.Promise = Promise;
-//mongoose.connect(MONGODB_URI);
-
+mongoose.connect(MONGODB_URI);
+app.use(express.static('public'));
  
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-app.use(express.static(__dirname + '../public'));
+
  
 app.get('/', function (req, res) {
-    //res.render('home');
-
-
   request("https://lifehacker.com/tag/programming", function(error, response, html) {
     var $ = cheerio.load(html);
     var results = [];
-    $("div .js_post-wrapper").each(function(i, element) {
+    $("div .js_post-wrapper").each(function(i, element) { 
       var title = $(element).find(".js_entry-link").text();
       var link = $(element).find(".js_entry-link").attr("href");
       var summary = $(element).find(".entry-summary").text();
@@ -38,6 +35,10 @@ app.get('/', function (req, res) {
     res.render('home', {"news" : results})
   })
 
+});
+
+app.get('/api/save', function (req, res) {
+  
 });
 
 app.listen(3000);
