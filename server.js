@@ -65,7 +65,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/load', function (req, res) {
-   res.render('home', {"news" : savedLinks})
+   res.render('saved', {"news" : savedLinks})
 });
 
 app.get('/api/save', function (req, res) {

@@ -2,9 +2,29 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1.5em;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 html, body{
     padding:0;
     margin:0;
+}
+
+.masthead {
+  color:white;
+  background: #999999
+  
+}
+.masthead-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 1.5em;
+    
+}
+
+.masthead h1 {
+    background: #cdcdcd;
+    grid-column:4/5;
+    text-align: center;
 }
