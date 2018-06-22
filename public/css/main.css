@@ -13,14 +13,26 @@ html, body{
 
 .masthead {
   color:white;
-  background: #999999
+  background: blue;
+  grid-column: -1/1;
   
 }
+
+.masthead-body {
+    height:400px;
+    grid-column: -1/1;
+    background: url("http://trendintech.com/wp-content/uploads/2017/08/Ruby-and-JavaScript.jpg") no-repeat top center;
+    background-position-y: -100px;
+     background-size: 1600px 600px;
+
+   
+}
+
 .masthead-grid {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-gap: 1.5em;
-    
+    background: black;
+   
 }
 
 .masthead h1 {
