@@ -11,10 +11,10 @@
 
 <div class="grid-container">
     {{#each news}}
-    <article style="  box-shadow: -1px 4px 2px -2px grey;">
+    <article class="article-js" style="box-shadow: -1px 4px 2px -2px grey;">
           <h3 style="background:#dedede; border: 1px solid #bbb; padding:10px; margin:10px; " >
              <a href="{{link}}"> {{title}}</a> 
-             <button>Save</button>
+             <button class="delete-story">Delete</button>
         </h3> 
          <div style="padding:20px; padding-top:0px;">
              {{summary}}
