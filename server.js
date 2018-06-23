@@ -5,6 +5,7 @@ const cheerio = require('cheerio')
 var request = require("request");
 const mongoose = require('mongoose');
 const Story = require("./storyModel");
+const $PORT  = process.env.PORT || 3000;
  
 var app = express();
 
@@ -96,4 +97,4 @@ app.delete('/api/:id', function(req,res ){
   })
  
 })
-app.listen(3000);
+app.listen($PORT);
