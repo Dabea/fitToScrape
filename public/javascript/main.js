@@ -18,10 +18,25 @@
  $('.save-story').on("click" ,(event) => {saveStory(event)})
 
 function saveStory(event) {
-   const $story = $(event.target);
-   const title = $story.closest('js-link')
-   console.log($story.closest('') )
+    const  $story = $(event.target);
+    const data = {
+        title: $story.siblings('.js-link').text(),
+        link: $story.siblings('.js-link').attr("href"),
+        summary: $story.closest("h3").siblings('.js-summary').text()
+    }
+    $.post('/api/save', data)
 
-   console.log(title);
-
+    // data2  = JSON.stringify()
+    // $.ajax({
+    //     url: `/api/save`,
+    //     type: 'POST',
+    //     json:  {
+    //         title: $story.siblings('.js-link').text(),
+    //         link: $story.siblings('.js-link').attr("href"),
+    //         summary: $story.closest("h3").siblings('.js-summary').text()
+    //     },
+    //     success: function(result) {
+    //         console.log("Study Created sucessfull")
+    //     },
+    // });
 }

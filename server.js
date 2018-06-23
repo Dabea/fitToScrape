@@ -72,7 +72,13 @@ app.get('/load', function (req, res) {
 });
 
 app.post('/api/save', function (req, res) {
-  Story.create(req.body.data)
+  console.log(req.body.title)
+  data ={
+    title:req.body.title,
+    link:req.body.link,
+    summary: req.body.summary
+  }
+  Story.create(data)
     .then((dbStory) => res.json("Story Saved"))
     .catch((err) => res.json(err))
 });
