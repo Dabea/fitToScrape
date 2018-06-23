@@ -3,8 +3,8 @@ var exphbs  = require('express-handlebars');
 var bodyParser = require("body-parser");
 const cheerio = require('cheerio')
 var request = require("request");
-//const mongoose = require('mongoose');
-
+const mongoose = require('mongoose');
+const Story = require("./storyModel");
  
 var app = express();
 
@@ -34,14 +34,16 @@ const savedLinks = [
 
 
 
-//var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapedData";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapedData";
 
-//mongoose.Promise = Promise;
-//mongoose.connect(MONGODB_URI);
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 app.use(express.static('public'));
  
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
  
 app.get('/', function (req, res) {
@@ -59,17 +61,33 @@ app.get('/', function (req, res) {
       });
     });
     res.render('home', {"news" : results})
-
   })
-
 });
 
 app.get('/load', function (req, res) {
-   res.render('saved', {"news" : savedLinks})
-});
+  Story.find({}).then((info) => res.render('saved', {"news" : info})
+  )
 
-app.get('/api/save', function (req, res) {
   
 });
 
+app.post('/api/save', function (req, res) {
+  Story.create(req.body.data)
+    .then((dbStory) => res.json("Story Saved"))
+    .catch((err) => res.json(err))
+});
+
+
+app.delete('/api/:id', function(req,res ){
+  Story.findByIdAndRemove(req.params.id, (err, todo) => {
+    if (err) return res.status(500).send(err);
+
+    const response = {
+      message: "Todo successfully deleted",
+      id: todo._id
+  };
+  return res.status(200).send(response);
+  })
+ 
+})
 app.listen(3000);

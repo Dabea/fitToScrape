@@ -13,8 +13,8 @@
     {{#each news}}
     <article class="article-js" style="box-shadow: -1px 4px 2px -2px grey;">
           <h3 style="background:#dedede; border: 1px solid #bbb; padding:10px; margin:10px; " >
-             <a href="{{link}}"> {{title}}</a> 
-             <button class="delete-story">Delete</button>
+             <a class= href="{{link}}"> {{title}}</a> 
+             <button  data-id="{{_id}}"class="delete-story">Delete   {{_id}}</button>
         </h3> 
          <div style="padding:20px; padding-top:0px;">
              {{summary}}
